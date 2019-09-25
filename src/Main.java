@@ -6,52 +6,61 @@ public class Main {
 
         double sum = 0;
         int numberOfPoints = 0;
-            while (sum <= 15_000) {
-                System.out.println("Введите сумму покупки");
-                double sumOfThisCurrent = scanner.nextDouble();
-                sum = sum + sumOfThisCurrent;
-                if (sum > 15000) {
-                    if (sum % 1000 == 0){
-                        System.out.println("Статус карты изменен на: серебряный. Текущий баланс равен " + sum + " Количество баллов равно " + (numberOfPoints = 750 + (int) ((sum - 15_000) / 1000 * 70)));
-                    } else {
-                        System.out.println("Статус карты изменен на: серебряный. Текущий баланс равен " + sum + " Количество баллов равно " + 750);
-                    }
-                    break;
-                }else {
-                    if (sum % 1000 == 0) {
-                    numberOfPoints = (int) (sum / 1000 * 50);
-                }
-
-                };
-                System.out.println("Статус карты: синий. Количество баллов равно " + numberOfPoints);
-            }
-
-        while(sum <= 150_000){
+        int blueCardLimit = 15_000;
+        int silverCardLimit = 150_000;
+        int checkSum = 1000;
+        int blueCardPoint = 50;
+        int silverCardPoint = 70;
+        int goldCardPoint = 100;
+        int blueCardPointLimit = 750;
+        int silverCardPointLimit = 10_200;
+        while (sum <= blueCardLimit) {
             System.out.println("Введите сумму покупки");
             double sumOfThisCurrent = scanner.nextDouble();
             sum = sum + sumOfThisCurrent;
-            if (sum > 150_000){
-                if (sum % 1000 ==0){
-                    System.out.println("Статус карты изменен на: золотой. Текущий баланс равен " + sum + " Количество баллов равно " + (numberOfPoints = 10200 + (int) ((sum - 150_000) / 1000 * 100)));
+            if (sum > blueCardLimit) {
+                if (sum % checkSum == 0) {
+                    System.out.println("Статус карты изменен на: серебряный. Текущий баланс равен " + sum + " Количество баллов равно " + (numberOfPoints = blueCardPointLimit + (int) ((sum - blueCardLimit) / checkSum * silverCardPoint)));
                 } else {
-                    System.out.println("Статус карты изменен на: золотой. Текущий баланс равен " + sum + " Количество баллов равно " + 10200);
+                    System.out.println("Статус карты изменен на: серебряный. Текущий баланс равен " + sum + " Количество баллов равно " + blueCardPointLimit);
                 }
                 break;
-            }else {
-                if (sum % 1000 == 0){
-                    numberOfPoints = 750 + (int) ((sum - 15_000) / 1000 * 70);
+            } else {
+                if (sum % checkSum == 0) {
+                    numberOfPoints = (int) (sum / checkSum * blueCardPoint);
                 }
+
             }
-            System.out.println("Статус карты: серебряный. Количество баллов равно " +numberOfPoints);
+            ;
+            System.out.println("Статус карты: синий. Количество баллов равно " + numberOfPoints);
         }
-        while(sum > 150_000){
+
+        while (sum <= silverCardLimit) {
             System.out.println("Введите сумму покупки");
             double sumOfThisCurrent = scanner.nextDouble();
             sum = sum + sumOfThisCurrent;
-            if (sum % 1000 == 0){
-                numberOfPoints = 10_200 + (int) ((sum - 150_000) / 1000 * 100);
+            if (sum > silverCardLimit) {
+                if (sum % checkSum == 0) {
+                    System.out.println("Статус карты изменен на: золотой. Текущий баланс равен " + sum + " Количество баллов равно " + (numberOfPoints = silverCardPointLimit + (int) ((sum - silverCardLimit) / checkSum * goldCardPoint)));
+                } else {
+                    System.out.println("Статус карты изменен на: золотой. Текущий баланс равен " + sum + " Количество баллов равно " + silverCardPointLimit);
+                }
+                break;
+            } else {
+                if (sum % checkSum == 0) {
+                    numberOfPoints = blueCardPointLimit + (int) ((sum - blueCardLimit) / checkSum * silverCardPoint);
+                }
             }
-            System.out.println("Статус карты: золотой. Количество баллов равно " +numberOfPoints);
+            System.out.println("Статус карты: серебряный. Количество баллов равно " + numberOfPoints);
+        }
+        while (sum > silverCardLimit) {
+            System.out.println("Введите сумму покупки");
+            double sumOfThisCurrent = scanner.nextDouble();
+            sum = sum + sumOfThisCurrent;
+            if (sum % checkSum == 0) {
+                numberOfPoints = silverCardPointLimit + (int) ((sum - silverCardLimit) / checkSum * goldCardPoint);
+            }
+            System.out.println("Статус карты: золотой. Количество баллов равно " + numberOfPoints);
         }
     }
 }
